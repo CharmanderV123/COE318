@@ -1,6 +1,6 @@
 /**
  *
- * @author Your name
+ * @author Venujan Suthakaran
  */
 package lab4.src;
 
@@ -24,19 +24,19 @@ public class Bank {
      * @return the name
      */
     public String getName() {
-        return null;  //Fix this
+        return this.name;  //Fix this
     }
 
     /**
      * @return the numAccounts
      */
     public int getNumAccounts() {
-        return 0; //Fix this
+        return this.numAccounts; //Fix this
     }
 
 
     public Account[] getAccounts() {
-        return null; //Fix this
+        return this.accounts; //Fix this
     }
 
     /**
@@ -46,6 +46,14 @@ public class Bank {
      * @return
      */
     public boolean hasAccountNumber(int accountNumber) {
+        for(Account account : this.accounts){
+            if (account != null){
+                if (account.getAccount_num()==accountNumber){
+                    return true;
+                }
+
+            }
+        }
         return false; //Fix this
     }
 
@@ -58,7 +66,18 @@ public class Bank {
      * @return true if successful
      */
     public boolean add(Account account) {
-        return true; //Fix this
+        if(this.hasAccountNumber(account.getAccount_num())){
+            return false;
+         }else {
+             for (int i = 0; i < this.accounts.length; i++) {
+                 if (this.accounts[i] == null) {
+                     this.accounts[i] = account;
+                     this.numAccounts++;
+                     break;
+                 }
+             }
+             return true;
+         } //Fix this
     }
 
     @Override
